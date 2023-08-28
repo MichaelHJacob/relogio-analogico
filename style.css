@@ -1,0 +1,178 @@
+:root {
+    
+    --Fundo: #b5d0c7;
+    --Fundo: #F8F7F7;
+    --FundoRelogio: #dad9d906;
+    --BordaRelogio:  3px solid #ffffff72;
+    --SombraExterna:  16px 14px 20px #0000001d;
+    --SombraInterna: inset 20px 20px 20px #00000010;
+    --Horas: #B8B8B8;
+    --Minutos: #787878;
+    --Segundos: #B80047;
+    --Digital: #DEDEDE;
+    --opacidade: 90%;
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+
+}
+
+body {
+    background-color: var(--Fundo);
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height:100vw;  
+}
+
+/*
+    Lembrando no css o que vem abaixo tem 
+    sempre mais importância do que o que código acima 
+
+    Portanto para o @media queries deve vir sempre após o conteúdo a ser estilizado 
+
+*/
+/*orientação: paisagem*/
+@media only screen and (orientation: landscape) {
+    .container {
+        width: 100vh;
+        height: 100vh;       
+        /*o container vai se basear no height altura da tela */
+       display: inline-block;
+       margin-left: 10px;       
+    }
+    body {
+        
+        overflow: auto;
+        white-space: nowrap;
+      
+       
+    }
+  
+
+    
+}
+
+#digital{
+    display: inline-block;
+    height: 100vw;
+    padding: 0;
+    margin: 0;   
+    background-color: #B80047; 
+}
+
+
+
+
+.relogio {
+    width: 90%;
+    max-width: 700px;
+    height: 90%;
+    max-height: 700px;
+
+    box-shadow: var(--SombraExterna);
+    border: var(--BordaRelogio);
+    border-radius: 50%;
+    background-color: var(--FundoRelogio);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: left ;
+
+   
+    
+}
+
+.relogio::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: inherit;
+    box-shadow: var(--SombraInterna);
+}
+
+.ponteiro {
+    position: absolute;
+    left: 50%;
+    
+    transform: rotate(-90deg);
+    transform-origin: left center;
+    box-shadow: 0px 1px 2px #0000006f;
+    
+
+    
+}
+
+#ponto {
+    width: 3.5%;
+    height: 3.5%;
+    border-radius: 50%;
+    background-color:#b80047  ;
+    z-index: 1;
+    transform: translateX(-50%);
+   
+}
+    
+
+#horas {
+    width: 35%;
+    height: 1.7%;
+    border-radius: 5px;
+    background-color: var(--Horas);
+    
+
+    
+ 
+}
+
+#minutos {
+    width: 42%;
+    height: 1.7% ;
+    background-color: var(--Minutos);
+    border-radius: 5px;
+}
+
+#segundos {
+    width: 50%;
+    height: 0.8%;
+    border-radius: 5px;
+    /* eixo : horizontal e vertical*/
+    transform-origin: 10% 50%;
+    /*margin-left:-40px;*/
+    background-color: var(--Segundos);
+    left: 45%;
+}
+    
+/*
+    em uma altura de tela de 500px com um largura superior
+    o relógio tera 80% de 500 = 400px
+    400px - 2x3px de borda = 394px
+
+    o segundo tem de largura 
+    56% da parte de relógio que le cabe ou seja 
+    
+    50% de 394 == 197px
+
+    ele é o único movido 45% da largura, 
+    isso representa 5% de distancia do centro relógio
+
+    esse 5% da largura da area útil do relógio é 
+    ... da largura do ponteiro segundos
+
+    
+
+
+*/
+    
